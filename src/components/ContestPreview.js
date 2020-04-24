@@ -15,6 +15,7 @@ class ContestPreview extends Component {
           {this.props.contestName}
         </div>
       </div>
+      
     );
   }
 }
