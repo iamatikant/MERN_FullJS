@@ -4,7 +4,7 @@
   "description": "Learning Fullstack JavaScript Development: MongoDB, Node.js, React.js",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon --exec babel-node server.js --ignore public/",
+    "start": "node server.js",
     "dev": "webpack -wd"
   },
   "repository": {
