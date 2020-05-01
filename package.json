@@ -2,7 +2,7 @@
   "name": "fulljs",
   "version": "1.0.0",
   "description": "Learning Fullstack JavaScript Development: MongoDB, Node.js, React.js",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "nodemon --exec babel-node server.js --ignore public/",
     "dev": "webpack -wd"
