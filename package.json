@@ -1,4 +1,5 @@
 {
+  "type":"module",
   "name": "fulljs",
   "version": "1.0.0",
   "description": "Learning Fullstack JavaScript Development: MongoDB, Node.js, React.js",
