@@ -4,7 +4,8 @@
   "description": "Learning Fullstack JavaScript Development: MongoDB, Node.js, React.js",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node server.js --ignore public/",
+    "start": "babel-node server.js",
+    "start:dev":"nodemon --exec babel-node server.js --ignore public/",
     "dev": "webpack -wd"
   },
   "repository": {
@@ -26,7 +27,14 @@
     "node-sass-middleware": "^0.11.0",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react-dom": "^16.7.0",
+    "@babel/node": "7.x",
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.5"
   },
   "devDependencies": {
     "@babel/node": "7.x",
