@@ -11,6 +11,7 @@ export const logStars = function(message) {
 
 export default {
   mongodbUri: "mongodb+srv://admin:admin@cluster0-al3vb.mongodb.net/test?retryWrites=true&w=majority",
+  //mongodbUri: 'mongodb://localhost:27017/test',
   port: env.PORT || 8080,
   host: env.HOST || '0.0.0.0',
   get serverUrl() {
