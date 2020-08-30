@@ -1,9 +1,16 @@
 import React from 'react';
+<<<<<<< HEAD
+=======
+import PropTypes from 'prop-types';
+>>>>>>> origin/samerbuna-finalcode
 import Header from './Header';
 import ContestList from './ContestList';
 import Contest from './Contest';
 import * as api from '../api';
+<<<<<<< HEAD
 import PropTypes from 'prop-types';
+=======
+>>>>>>> origin/samerbuna-finalcode
 
 const pushState = (obj, url) =>
   window.history.pushState(obj, '', url);
@@ -13,6 +20,7 @@ const onPopState = handler => {
 };
 
 class App extends React.Component {
+<<<<<<< HEAD
 
   static propTypes = {
     initialData: PropTypes.object.isRequired,
@@ -20,18 +28,30 @@ class App extends React.Component {
 
   state = this.props.initialData;
 
+=======
+  static propTypes = {
+    initialData: PropTypes.object.isRequired
+  };
+  state = this.props.initialData;
+>>>>>>> origin/samerbuna-finalcode
   componentDidMount() {
     onPopState((event) => {
       this.setState({
         currentContestId: (event.state || {}).currentContestId
       });
     });
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/samerbuna-finalcode
   }
   componentWillUnmount() {
     onPopState(null);
   }
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/samerbuna-finalcode
   fetchContest = (contestId) => {
     pushState(
       { currentContestId: contestId },
@@ -47,7 +67,10 @@ class App extends React.Component {
       });
     });
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/samerbuna-finalcode
   fetchContestList = () => {
     pushState(
       { currentContestId: null },
@@ -60,9 +83,14 @@ class App extends React.Component {
       });
     });
   };
+<<<<<<< HEAD
 
   fetchNames = (nameIds) => {
     if(nameIds.length === 0) {
+=======
+  fetchNames = (nameIds) => {
+    if (nameIds.length === 0) {
+>>>>>>> origin/samerbuna-finalcode
       return;
     }
     api.fetchNames(nameIds).then(names => {
@@ -71,6 +99,7 @@ class App extends React.Component {
       });
     });
   };
+<<<<<<< HEAD
 
   pageHeader() {
     if(this.state.currentContestId) {
@@ -92,6 +121,26 @@ class App extends React.Component {
     return this.state.contests[this.state.currentContestId];
   }
 
+=======
+  currentContest() {
+    return this.state.contests[this.state.currentContestId];
+  }
+  pageHeader() {
+    if (this.state.currentContestId) {
+      return this.currentContest().contestName;
+    }
+
+    return 'Naming Contests';
+  }
+  lookupName = (nameId) => {
+    if (!this.state.names || !this.state.names[nameId]) {
+      return {
+        name: '...'
+      };
+    }
+    return this.state.names[nameId];
+  };
+>>>>>>> origin/samerbuna-finalcode
   addName = (newName, contestId) => {
     api.addName(newName, contestId).then(resp =>
       this.setState({
@@ -104,6 +153,7 @@ class App extends React.Component {
           [resp.newName._id]: resp.newName
         }
       })
+<<<<<<< HEAD
       )
       .catch(console.error);
   };
@@ -117,11 +167,29 @@ class App extends React.Component {
               addName = {this.addName}
               {...this.currentContest()} />;
     }
+=======
+    )
+    .catch(console.error);
+  };
+  currentContent() {
+    if (this.state.currentContestId) {
+      return <Contest
+               contestListClick={this.fetchContestList}
+               fetchNames={this.fetchNames}
+               lookupName={this.lookupName}
+               addName={this.addName}
+               {...this.currentContest()} />;
+    }
+
+>>>>>>> origin/samerbuna-finalcode
     return <ContestList
             onContestClick={this.fetchContest}
             contests={this.state.contests} />;
   }
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/samerbuna-finalcode
   render() {
     return (
       <div className="App">

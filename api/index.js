@@ -1,13 +1,23 @@
+<<<<<<< HEAD
 /* eslint-disable linebreak-style */
+=======
+>>>>>>> origin/samerbuna-finalcode
 import express from 'express';
 import { MongoClient, ObjectID } from 'mongodb';
 import assert from 'assert';
 import config from '../config';
 
 let mdb;
+<<<<<<< HEAD
 MongoClient.connect(config.mongodbUri, (err, db) => {
   assert.equal(null, err);
   mdb=db;
+=======
+MongoClient.connect(config.mongodbUri, (err, client) => {
+  assert.equal(null, err);
+
+  mdb = client.db('test');
+>>>>>>> origin/samerbuna-finalcode
 });
 
 const router = express.Router();
@@ -22,7 +32,11 @@ router.get('/contests', (req, res) => {
     .each((err, contest) => {
       assert.equal(null, err);
 
+<<<<<<< HEAD
       if(!contest) {  //no more contests
+=======
+      if (!contest) { // no more contests
+>>>>>>> origin/samerbuna-finalcode
         res.send({ contests });
         return;
       }
@@ -34,19 +48,30 @@ router.get('/contests', (req, res) => {
 router.get('/names/:nameIds', (req, res) => {
   const nameIds = req.params.nameIds.split(',').map(ObjectID);
   let names = {};
+<<<<<<< HEAD
   setTimeout(function() {
     mdb.collection('names').find( {_id: { $in: nameIds }})
     .each((err, name) => {
       assert.equal(null, err);
 
       if(!name) {  //no more names
+=======
+  mdb.collection('names').find({ _id: { $in: nameIds }})
+    .each((err, name) => {
+      assert.equal(null, err);
+
+      if (!name) { // no more names
+>>>>>>> origin/samerbuna-finalcode
         res.send({ names });
         return;
       }
 
       names[name._id] = name;
     });
+<<<<<<< HEAD
   }, 4000);
+=======
+>>>>>>> origin/samerbuna-finalcode
 });
 
 
@@ -54,13 +79,21 @@ router.get('/contests/:contestId', (req, res) => {
   mdb.collection('contests')
     .findOne({ _id: ObjectID(req.params.contestId) })
     .then(contest => res.send(contest))
+<<<<<<< HEAD
     .catch(console.error);
 
+=======
+    .catch(error => {
+      console.error(error);
+      res.status(404).send('Bad Request');
+    });
+>>>>>>> origin/samerbuna-finalcode
 });
 
 router.post('/names', (req, res) => {
   const contestId = ObjectID(req.body.contestId);
   const name = req.body.newName;
+<<<<<<< HEAD
   
   //validations on contestId and name
   mdb.collection('names').insertOne({ name }).then(result => {
@@ -83,3 +116,25 @@ router.post('/names', (req, res) => {
 });
 
 export default router;
+=======
+  // validation ...
+  mdb.collection('names').insertOne({ name }).then(result =>
+    mdb.collection('contests').findAndModify(
+      { _id: contestId },
+      [],
+      { $push: { nameIds: result.insertedId } },
+      { new: true }
+    ).then(doc =>
+      res.send({
+        updatedContest: doc.value,
+        newName: { _id: result.insertedId, name }
+      })
+    )
+  ).catch(error => {
+    console.error(error);
+    res.status(404).send('Bad Request');
+  });
+});
+
+export default router;
+>>>>>>> origin/samerbuna-finalcode

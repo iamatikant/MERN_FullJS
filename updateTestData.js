@@ -29,4 +29,8 @@ MongoClient.connect(config.mongodbUri, (err, client) => {
       .catch(console.error);
   });
 
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> origin/samerbuna-finalcode

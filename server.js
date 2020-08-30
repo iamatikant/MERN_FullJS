@@ -2,11 +2,18 @@ import config from './config';
 import apiRouter from './api';
 import sassMiddleware from 'node-sass-middleware';
 import path from 'path';
+<<<<<<< HEAD
+=======
+import serverRender from './serverRender';
+>>>>>>> origin/samerbuna-finalcode
 import express from 'express';
 import bodyParser from 'body-parser';
 
 const server = express();
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/samerbuna-finalcode
 server.use(bodyParser.json());
 
 server.use(sassMiddleware({
@@ -16,8 +23,11 @@ server.use(sassMiddleware({
 
 server.set('view engine', 'ejs');
 
+<<<<<<< HEAD
 import serverRender from './serverRender';
 
+=======
+>>>>>>> origin/samerbuna-finalcode
 server.get(['/', '/contest/:contestId'], (req, res) => {
   serverRender(req.params.contestId)
     .then(({ initialMarkup, initialData }) => {
@@ -37,4 +47,8 @@ server.use(express.static('public'));
 
 server.listen(config.port, config.host, () => {
   console.info('Express listening on port', config.port);
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> origin/samerbuna-finalcode

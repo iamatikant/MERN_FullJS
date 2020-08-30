@@ -6,4 +6,8 @@ import App from './components/App';
 ReactDOM.render(
   <App initialData={window.initialData} />,
   document.getElementById('root')
+<<<<<<< HEAD
 );
+=======
+);
+>>>>>>> origin/samerbuna-finalcode
